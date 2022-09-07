@@ -7,6 +7,6 @@
 *                   name of the c program file and a description  *
 *                   of the program; it will then print out a      *
 *                   formatted version within the comment          *
-*                   deliminator like so.                          *
+*                   block like so.                                *
 ******************************************************************/
 ```
