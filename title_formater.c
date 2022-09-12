@@ -34,6 +34,8 @@ int main(void) {
     printf("******************************************************************/");
     printf("\n\n\n");
 
+    printf("Press any key to exit.\n");
+    getchar();
 
 
     return 0;
