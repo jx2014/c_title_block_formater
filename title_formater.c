@@ -3,7 +3,7 @@
 *                   name of the c program file and a description  *
 *                   of the program; it will then print out a      *
 *                   formatted version within the comment          *
-*                   block like so.                                *
+*                   deliminator like so.                          *
 ******************************************************************/
 
 #include <stdio.h>
@@ -76,8 +76,8 @@ void print_row(char *title, char *title_block) {
             row_text[r] = title_block[i];
         }  
 
-        // we have reached the last line, last character.
         if (i == len_title_block) {
+            // we have reached the last line, last character.
             for (; r< (ROW_WIDTH); r++)
                 row_text[r] = ' ';            
         } else if (row_text[r] != ' ') {
@@ -91,10 +91,18 @@ void print_row(char *title, char *title_block) {
             // in the above example, row_text[r+1] is character 'n'
             // need to back off until prevoius space position
             // and fill the remainder of the sentence with space.
+            
+            // Here, value r indicates the beginning index of white spaces 
+            // that need to fill out for the remainder of this row.
+
             r = r - (i - space_pos);
-            i = space_pos + 1; // we want to start the next sentence with a letter, not a white space.
-            for (; r< (ROW_WIDTH); r++)
-                row_text[r] = ' ';
+            // if r is <= leading_space, then we know the word size exceeds the row length.
+            // we need to pring it out regardless.
+            if (r > leading_space) {
+                i = space_pos + 1; // we want to start the next sentence with a letter, not a white space.
+                for (; r< (ROW_WIDTH); r++)
+                    row_text[r] = ' ';
+            }
         }
         // with the row with ' *\n'
         strcat(row_text, " *");
